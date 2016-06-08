@@ -6,7 +6,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <title></title>
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -33,25 +33,41 @@
             </button>
             <a class="navbar-brand" href="#">FNV horecabond</a>
         </div>
+        <?php if(!$this->session->userdata('userId')) : ?>
         <center>
             <div class="navbar-collapse collapse" id="navbar-main">
 
-                <form class="navbar-form navbar-right" role="search">
+                <form class="navbar-form navbar-right" action="<?= base_url('login/tryLogin') ?>" method="post" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="username" placeholder="e-mail">
+                        <input type="text" class="form-control" name="email" placeholder="e-mail">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="password" placeholder="wachtwoord">
+                        <input type="password" class="form-control" name="pass" placeholder="wachtwoord">
                     </div>
                     <button type="submit" class="btn btn-default">Sign In</button>
                 </form>
 
             </div>
         </center>
+        <?php else : ?>
+
+        <p style="margin-top: 16px; float: right;">Welkom <?= $this->session->userdata('username'); ?> - <a href="<?= base_url('/ledenportaal/dashboard') ?>">Mijn FNV</a> - <a href="<?= base_url('/login/destroy') ?>">uitloggen</a></p>
+
+        <?php endif; ?>
     </div>
 </div>
 
+<div id="wrapper" class="container" >
+    <div class="row">
+        <div class="col-sm-12" >
 
+            <?php if (isset($login_error)) : ?>
+                <div id="auth-error" class="alert alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+                    <?= $login_error; ?>
+                </div>
+            <?php endif; ?>
 
-</body>
-</html>
+        </div>
+    </div>
+

@@ -1,12 +1,16 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-include_once APPPATH.'core/AuthController.php';
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+include_once APPPATH.'core/BaseController.php';
 
 
-class Dashboard extends AuthController {
+class Dashboard extends BaseController {
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     public function index()
     {
-        echo "ledenportaal";
+        loadView($this, null, null);
     }
 }
