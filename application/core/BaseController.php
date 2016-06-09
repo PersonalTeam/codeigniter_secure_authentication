@@ -38,4 +38,12 @@ class BaseController extends CI_Controller
             $this->AuthModel->destroySession();
         }
     }
+
+
+
+
+    // GETTERS
+    public function getAfasMemberId() {
+        return $this->afasMemberId;
+    }
 }

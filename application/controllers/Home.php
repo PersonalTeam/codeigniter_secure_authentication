@@ -13,7 +13,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data['login_error'] = $this->session->flashdata('login_error');
-		loadView($this, 'landingpage', $data);
+		loadView($this, 'public/landingpage', $data);
 		
 
 

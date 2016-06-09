@@ -2,7 +2,7 @@
 include_once APPPATH.'core/BaseController.php';
 
 
-class Dashboard extends BaseController {
+class Contributieteruggaaf extends BaseController {
 
     public function __construct()
     {
@@ -11,6 +11,6 @@ class Dashboard extends BaseController {
 
     public function index()
     {
-        loadView($this, 'portal/dashboard', null);
+        loadView($this, 'portal/contributieteruggaaf', null);
     }
 }
