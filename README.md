@@ -1,5 +1,4 @@
 # codeigniter_secure_authentication
-This is a base project for authentticating users securely. It hashes passwords with random tokens and checks expiration with the database.
-It uses Kenji's amazing composer package that implements all security measures for our installation automatically. So a huge thanks to Kenji for saving me a lot of work :)
+This is a base project for authentticating users securely. It hashes passwords with random tokens and checks expiration with the database. A two way crypting algoritm is used for obfustcating id's before communicating with external API's that uses rotating salts.
 
-When this project is finished I will add a SQL file you can use so you can use this project without much difficulty
+The entire project is built to be used with PSR-4 and composer. As of now this is still a private project but might be made into a public project in the future.
