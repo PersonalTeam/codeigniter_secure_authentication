@@ -11,7 +11,11 @@ class BaseController extends CI_Controller
         parent::__construct();
         $this->load->model('AuthModel');
 
-        // TODO: check if user is still authenticated
+        // Check if the connection is secure
+        (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? null : $this->AuthModel->destroySession('Uw verbinding is mogelijk niet veilig. Vanwege beveiligingsmaatregelen bent u automatisch uitgelogd.');
+
+
+        // Check if user is still authenticated
         if ($this->session->userId && $this->session->afasMemberId && $this->session->username && $this->session->sessionToken) {
 
             // Session variables available
@@ -38,8 +42,6 @@ class BaseController extends CI_Controller
             $this->AuthModel->destroySession();
         }
     }
-
-
 
 
     // GETTERS

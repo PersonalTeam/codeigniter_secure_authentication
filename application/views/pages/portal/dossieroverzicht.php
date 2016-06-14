@@ -18,12 +18,14 @@
         <p>If we're going to have animals around we all have to be concerned about them and take care of them. Think about a cloud. Just float around and be there. Even the worst thing we can do here is good. It's so important to do something every day that will make you happy. I can't think of anything more rewarding than being able to express yourself to others through painting.</p>
         <?php if (isset($dossiers)) : ?>
 
+            <?php $dossierLink = base_url('/ledenportaal/dossiers/get/'); ?>
+
             <div class="panel panel-default">
                 <div class="panel-heading">Lopende dossiers</div>
                 <div class="panel-body">
                     <table class="table">
                         <?php foreach($dossiers->lopend as $dossier) : ?>
-                            <?= "<tr><td>$dossier->datum</td><td>$dossier->dossiernr</td><td>$dossier->onderwerp</td><td><a href='#' style='float: right;' >bekijken</a></td></tr>"; ?>
+                            <?= "<tr><td>$dossier->datum</td><td>$dossier->dossiernr</td><td>$dossier->onderwerp</td><td><a href='$dossierLink/$dossier->link' style='float: right;' >bekijken</a></td></tr>"; ?>
                         <?php endforeach; ?>
                     </table>
                 </div>
@@ -36,12 +38,11 @@
                 <div class="panel-body">
                     <table class="table">
                         <?php foreach($dossiers->afgerond as $dossier) : ?>
-                            <?= "<tr><td>$dossier->datum</td><td>$dossier->dossiernr</td><td>$dossier->onderwerp</td><td><a href='#' style='float: right;' >bekijken</a></td></tr>"; ?>
+                            <?= "<tr><td>$dossier->datum</td><td>$dossier->dossiernr</td><td>$dossier->onderwerp</td><td><a onclick='return false;' href='$dossierLink/$dossier->link' style='float: right;' >bekijken</a></td></tr>"; ?>
                         <?php endforeach; ?>
                     </table>
                 </div>
             </div>
-
 
         <?php endif; ?>
     </div>

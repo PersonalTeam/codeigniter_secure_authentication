@@ -60,13 +60,19 @@ class AuthModel extends CI_Model
         redirect(base_url('ledenportaal/dashboard'));
     }
 
-    public function destroySession() {
+    public function destroySession($message = null) {
+
         $this->session->unset_userdata([
             'userId',
             'afasMemberId',
             'username',
             'sessionToken'
         ]);
+
+        if ($message != null) {
+            $message = urldecode($message);
+            $this->session->set_flashdata('login_error', $message);
+        }
 
         redirect(base_url());
     }

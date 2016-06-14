@@ -12,6 +12,8 @@
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
+    <script src="<?= base_url('/assets/js/custom.js'); ?>"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -34,24 +36,32 @@
             <a class="navbar-brand" href="<?= base_url(); ?>">FNV horecabond</a>
         </div>
         <?php if(!$this->session->userdata('userId')) : ?>
-        <center>
-            <div class="navbar-collapse collapse" id="navbar-main">
+            <?php
+            $csrf = array(
+                'name' => $this->security->get_csrf_token_name(),
+                'hash' => $this->security->get_csrf_hash()
+            );
+            ?>
 
-                <form class="navbar-form navbar-right" action="<?= base_url('login/tryLogin') ?>" method="post" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="email" placeholder="e-mail">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="pass" placeholder="wachtwoord">
-                    </div>
-                    <button type="submit" class="btn btn-default">Sign In</button>
-                </form>
+            <center>
+                <div class="navbar-collapse collapse" id="navbar-main">
 
-            </div>
-        </center>
+                    <form class="navbar-form navbar-right" action="<?= base_url('login/tryLogin') ?>" method="post" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="email" placeholder="e-mail">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="pass" placeholder="wachtwoord">
+                        </div>
+                        <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>" />
+                        <a class="form_submit" class="btn btn-default">Sign In</a>
+                    </form>
+
+                </div>
+            </center>
         <?php else : ?>
 
-        <p style="margin-top: 16px; float: right;">Welkom <?= $this->session->userdata('username'); ?> - <a href="<?= base_url('/ledenportaal/dashboard') ?>">Mijn FNV</a> - <a href="<?= base_url('/login/destroy') ?>">uitloggen</a></p>
+            <p id="logged_in_bar" >Welkom <?= $this->session->userdata('username'); ?> - <a href="<?= base_url('/ledenportaal/dashboard') ?>">Mijn FNV</a> - <a href="<?= base_url('/login/destroy') ?>">uitloggen</a></p>
 
         <?php endif; ?>
     </div>

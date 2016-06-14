@@ -23,7 +23,7 @@ class Login extends CI_Controller
             if (!isset($res->error)) {
                 // user authenticated. Do the API call
                 $this->load->helper('api');
-                $memberData = json_decode(getAfasMemberData($res->fnv_member_id));
+                $memberData = json_decode(getAfasMemberData($this, $res->fnv_member_id));
 
                 if (isset($memberData->error)) {
                     $this->session->set_flashdata('login_error', 'Backoffice foutmelding: ' . $memberData->error);
@@ -43,8 +43,8 @@ class Login extends CI_Controller
     }
 
 
-    public function destroy () {
-        $this->AuthModel->destroySession();
+    public function destroy ($message = null) {
+        $this->AuthModel->destroySession($message);
     }
 
 }
